@@ -1,8 +1,9 @@
-# Docker Image Targets
+# Containers
 
-This package contains targets for building and pushing Docker container images.
+Bazel targets for building and pushing Docker container images used by the
+Cross-Media Measurement System.
 
-## Requirements
+## Usage Requirements
 
 ### Building from source
 
@@ -19,3 +20,7 @@ access is required to install packages from the package repositories.
 ### Pushing
 
 Container registry write access is needed to push images.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
