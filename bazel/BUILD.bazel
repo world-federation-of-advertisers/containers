@@ -27,7 +27,6 @@ container_commit_install_apt_packages(
     image = BASE_IMAGE,
     packages = [
         "git",
-        "python",
         "python3",
         "swig",
         "tzdata",  # For Cloud Spanner Emulator.
@@ -36,12 +35,13 @@ container_commit_install_apt_packages(
 )
 
 container_layer(
-    name = "bazel_binary",
+    name = "bazelisk_binary",
     directory = "/usr/bin",
     files = [
-        "@bazel//file",
+        "@bazelisk//file",
     ],
     mode = "0o755",
+    symlinks = {"/usr/bin/bazel": "/usr/bin/bazelisk"},
 )
 
 container_layer(
@@ -57,7 +57,7 @@ container_image(
     env = JAVA.env,
     layers = [
         ":apt_packages",
-        ":bazel_binary",
+        ":bazelisk_binary",
         ":cue_binary",
     ],
     stamp = True,
