@@ -6,19 +6,17 @@ load(
     "http_file",
 )
 
-# TODO(@SanjayVas): Switch to an official release once there's one that contains
-# the fixes for https://github.com/bazelbuild/rules_docker/issues/1716.
-RULES_DOCKER_REVISION = "e15c9ebf203b7fa708e69ff5f1cdcf427d7edf6f"
+RULES_DOCKER_VERSION = "0.19.0"
 
 http_archive(
     name = "io_bazel_rules_docker",
-    sha256 = "893726fd83049cece8bfec873091c43877449f28987adf5c13b17801ecf0a788",
-    strip_prefix = "rules_docker-{revision}".format(
-        revision = RULES_DOCKER_REVISION,
+    sha256 = "1f4e59843b61981a96835dc4ac377ad4da9f8c334ebe5e0bb3f58f80c09735f4",
+    strip_prefix = "rules_docker-{version}".format(
+        version = RULES_DOCKER_VERSION,
     ),
     urls = [
-        "https://github.com/bazelbuild/rules_docker/archive/{revision}.tar.gz".format(
-            revision = RULES_DOCKER_REVISION,
+        "https://github.com/bazelbuild/rules_docker/releases/download/v{version}/rules_docker-v{version}.tar.gz".format(
+            version = RULES_DOCKER_VERSION,
         ),
     ],
 )
@@ -42,7 +40,7 @@ load(
 # docker.io/library/ubuntu:18.04
 container_pull(
     name = "ubuntu_18_04",
-    digest = "sha256:d1bf40f712c466317f5e06d38b3e7e4c98fef1229872bf6e2a8d1e01836c7ec4",
+    digest = "sha256:b9caadbf898c50ce67da0ab5bafc4680997b010c3e17d2bb73d2ae5fe056e52b",
     registry = "docker.io",
     repository = "library/ubuntu",
 )
@@ -66,11 +64,11 @@ container_pull(
 
 # bazel
 http_file(
-    name = "bazel",
-    downloaded_file_path = "bazel",
+    name = "bazelisk",
+    downloaded_file_path = "bazelisk",
     executable = True,
-    sha256 = "7bee349a626281fc8b8d04a7a0b0358492712377400ab12533aeb39c2eb2b901",
-    urls = ["https://github.com/bazelbuild/bazel/releases/download/4.0.0/bazel-4.0.0-linux-x86_64"],
+    sha256 = "4cb534c52cdd47a6223d4596d530e7c9c785438ab3b0a49ff347e991c210b2cd",
+    urls = ["https://github.com/bazelbuild/bazelisk/releases/download/v1.10.1/bazelisk-linux-amd64"],
 )
 
 # CUE
