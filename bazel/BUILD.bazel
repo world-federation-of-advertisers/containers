@@ -63,6 +63,7 @@ container_image(
     stamp = True,
     symlinks = {
         "/usr/bin/clang": "/usr/bin/clang-10",
+        "/usr/bin/python": "/usr/bin/python3",
     },
 )
 
