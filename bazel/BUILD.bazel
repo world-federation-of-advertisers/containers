@@ -1,7 +1,7 @@
 # Bazel build environment image.
 
 load("//:constants.bzl", "DEBIAN_JAVA_11")
-load("//:defs.bzl", "container_commit_install_apt_packages")
+load("//:defs.bzl", "container_commit_add_apt_key", "container_commit_install_apt_packages")
 load(
     "@io_bazel_rules_docker//container:container.bzl",
     "container_image",
@@ -22,6 +22,12 @@ BAZEL_DEPS = [
     "zip",
 ]
 
+CLOUD_SDK_DEPS = [
+    "apt-transport-https",
+    "ca-certificates",
+    "gnupg",
+]
+
 container_commit_install_apt_packages(
     name = "apt_packages",
     image = BASE_IMAGE,
@@ -30,8 +36,55 @@ container_commit_install_apt_packages(
         "python3",
         "swig",
         "tzdata",  # For Cloud Spanner Emulator.
-    ] + BAZEL_DEPS,
+    ] + BAZEL_DEPS + CLOUD_SDK_DEPS,
     upgrade = True,
+)
+
+container_layer(
+    name = "cloud_sdk_apt_key",
+    directory = "/tmp",
+    files = ["@cloud_sdk_apt_key//file"],
+)
+
+container_image(
+    name = "cloud_sdk_apt_key_image",
+    base = BASE_IMAGE,
+    layers = [
+        ":apt_packages",
+        ":cloud_sdk_apt_key",
+    ],
+)
+
+container_commit_add_apt_key(
+    name = "cloud_sdk_apt_keyring",
+    image = ":cloud_sdk_apt_key_image.tar",
+    key_path = "/tmp/cloud-sdk-apt-key.gpg",
+    keyring_path = "/usr/share/keyrings/cloud.google.gpg",
+)
+
+container_layer(
+    name = "cloud_sdk_apt_source",
+    directory = "/etc/apt/sources.list.d",
+    files = ["google-cloud-sdk.list"],
+)
+
+container_image(
+    name = "cloud_sdk_apt_image",
+    base = BASE_IMAGE,
+    layers = [
+        ":apt_packages",
+        ":cloud_sdk_apt_keyring",
+        ":cloud_sdk_apt_source",
+    ],
+)
+
+container_commit_install_apt_packages(
+    name = "cloud_sdk_apt_packages",
+    image = ":cloud_sdk_apt_image.tar",
+    packages = [
+        "google-cloud-sdk",
+        "kubectl",
+    ],
 )
 
 container_layer(
@@ -58,6 +111,7 @@ container_image(
     layers = [
         ":apt_packages",
         ":bazelisk_binary",
+        ":cloud_sdk_apt_packages",
         ":cue_binary",
     ],
     stamp = True,
