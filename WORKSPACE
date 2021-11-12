@@ -78,3 +78,12 @@ http_file(
     sha256 = "810851e0e7d38192a6d0e09a6fa89ab5ff526ce29c9741f697995601edccb134",
     urls = ["https://github.com/cuelang/cue/releases/download/v0.2.2/cue_0.2.2_Linux_x86_64.tar.gz"],
 )
+
+# Google Cloud SDK
+# See https://cloud.google.com/sdk/docs/install#deb
+http_file(
+    name = "cloud_sdk_apt_key",
+    downloaded_file_path = "cloud-sdk-apt-key.gpg",
+    sha256 = "ff834d1e179c3727d9cd3d0c8dad763b0710241f1b64539a200fbac68aebff3e",
+    urls = ["https://packages.cloud.google.com/apt/doc/apt-key.gpg"],
+)
