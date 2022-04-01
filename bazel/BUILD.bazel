@@ -11,12 +11,12 @@ load(
 
 JAVA = DEBIAN_JAVA_11
 
-BASE_IMAGE = "@ubuntu_18_04//image"
+BASE_IMAGE = "@ubuntu_20_04//image"
 
 # Bazel requires zip/unzip, a C++ compiler, and a JDK.
 # See https://docs.bazel.build/versions/3.7.0/install-ubuntu.html#step-1-install-required-packages
 BAZEL_DEPS = [
-    "clang-10",
+    "clang",
     "openjdk-11-jdk-headless",
     "unzip",
     "zip",
@@ -34,6 +34,7 @@ container_commit_install_apt_packages(
     packages = [
         "git",
         "python3",
+        "python-is-python3",
         "swig",
         "tzdata",  # For Cloud Spanner Emulator.
     ] + BAZEL_DEPS + CLOUD_SDK_DEPS,
@@ -115,10 +116,6 @@ container_image(
         ":cue_binary",
     ],
     stamp = True,
-    symlinks = {
-        "/usr/bin/clang": "/usr/bin/clang-10",
-        "/usr/bin/python": "/usr/bin/python3",
-    },
 )
 
 container_push(

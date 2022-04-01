@@ -37,10 +37,10 @@ load(
     "container_pull",
 )
 
-# docker.io/library/ubuntu:18.04
+# docker.io/library/ubuntu:20.04
 container_pull(
-    name = "ubuntu_18_04",
-    digest = "sha256:b9caadbf898c50ce67da0ab5bafc4680997b010c3e17d2bb73d2ae5fe056e52b",
+    name = "ubuntu_20_04",
+    digest = "sha256:dcc176d1ab45d154b767be03c703a35fe0df16cfb1cc7ea5dd3b6f9af99b6718",
     registry = "docker.io",
     repository = "library/ubuntu",
 )
