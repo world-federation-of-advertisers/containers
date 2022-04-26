@@ -115,7 +115,7 @@ container_image(
         ":cloud_sdk_apt_packages",
         ":cue_binary",
     ],
-    stamp = True,
+    stamp = "@io_bazel_rules_docker//stamp:always",
 )
 
 container_push(
