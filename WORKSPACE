@@ -6,11 +6,11 @@ load(
     "http_file",
 )
 
-RULES_DOCKER_VERSION = "0.19.0"
+RULES_DOCKER_VERSION = "0.24.0"
 
 http_archive(
     name = "io_bazel_rules_docker",
-    sha256 = "1f4e59843b61981a96835dc4ac377ad4da9f8c334ebe5e0bb3f58f80c09735f4",
+    sha256 = "27d53c1d646fc9537a70427ad7b034734d08a9c38924cc6357cc973fed300820",
     strip_prefix = "rules_docker-{version}".format(
         version = RULES_DOCKER_VERSION,
     ),
@@ -43,23 +43,6 @@ container_pull(
     digest = "sha256:dcc176d1ab45d154b767be03c703a35fe0df16cfb1cc7ea5dd3b6f9af99b6718",
     registry = "docker.io",
     repository = "library/ubuntu",
-)
-
-# docker.io/library/debian:bullseye-slim
-container_pull(
-    name = "debian_bullseye",
-    digest = "sha256:8ab4e348f60ebd18b891593a531ded31cbbc3878f6e476116f3b49b15c199110",
-    registry = "docker.io",
-    repository = "library/debian",
-)
-
-# Custom Java base image.
-# See //base:push_java_base
-container_pull(
-    name = "debian_java_base",
-    digest = "sha256:c6746729103a1a306a1ed572012562496512a691b3b23c3abacd64ad503cebc2",
-    registry = "index.docker.io",
-    repository = "wfameasurement/java-base",
 )
 
 # bazel
