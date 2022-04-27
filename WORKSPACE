@@ -45,22 +45,6 @@ container_pull(
     repository = "library/ubuntu",
 )
 
-# docker.io/library/debian:bullseye-slim
-container_pull(
-    name = "debian_bullseye",
-    digest = "sha256:8ab4e348f60ebd18b891593a531ded31cbbc3878f6e476116f3b49b15c199110",
-    registry = "docker.io",
-    repository = "library/debian",
-)
-
-# Custom Java base image.
-container_pull(
-    name = "debian_java_base",
-    digest = "sha256:c6746729103a1a306a1ed572012562496512a691b3b23c3abacd64ad503cebc2",
-    registry = "index.docker.io",
-    repository = "wfameasurement/java-base",
-)
-
 # bazel
 http_file(
     name = "bazelisk",
