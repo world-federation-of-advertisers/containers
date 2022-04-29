@@ -1,0 +1,28 @@
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_image",
+    "container_layer",
+    "container_push",
+)
+
+container_layer(
+    name = "liquibase_spanner",
+    directory = "/liquibase/lib",
+    files = ["@liquibase_spanner//file"],
+)
+
+container_image(
+    name = "liquibase_image",
+    base = "@liquibase//image",
+    layers = [":liquibase_spanner"],
+)
+
+container_push(
+    name = "push_liquibase_image",
+    format = "Docker",
+    image = ":liquibase_image",
+    registry = "ghcr.io",
+    repository = "$(github_repo_owner)/liquibase",
+    tag = "$(image_tag)",
+    tags = ["manual"],
+)

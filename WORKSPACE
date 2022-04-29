@@ -70,3 +70,10 @@ http_file(
     sha256 = "ff834d1e179c3727d9cd3d0c8dad763b0710241f1b64539a200fbac68aebff3e",
     urls = ["https://packages.cloud.google.com/apt/doc/apt-key.gpg"],
 )
+
+container_pull(
+    name = "liquibase",
+    digest = "sha256:6ddadbf89160e8f1e690cf52267703cf7279268f31e8d95781402270367c9e82",
+    registry = "docker.io",
+    repository = "liquibase/liquibase",
+)

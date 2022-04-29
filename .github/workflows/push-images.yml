@@ -36,5 +36,8 @@ jobs:
           DEFAULT_BRANCH: main
         run: ./.github/workflows/export-image-tag.sh
 
+      - name: Push Liquibase image
+        run: bazel run //liquibase:push_liquibase_image --define=github_repo_owner=$GITHUB_REPOSITORY_OWNER --define=image_tag=$IMAGE_TAG
+
       - name: Push Bazel image
         run: bazel run //bazel:push_bazel_image --define=github_repo_owner=$GITHUB_REPOSITORY_OWNER --define=image_tag=$IMAGE_TAG
