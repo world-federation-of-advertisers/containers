@@ -70,3 +70,17 @@ http_file(
     sha256 = "ff834d1e179c3727d9cd3d0c8dad763b0710241f1b64539a200fbac68aebff3e",
     urls = ["https://packages.cloud.google.com/apt/doc/apt-key.gpg"],
 )
+
+http_file(
+    name = "liquibase",
+    downloaded_file_path = "liquibase.tar.gz",
+    sha256 = "b7d2afbd0b6a3443f3eeb8050785eeabee3a76a12473014dc2788dce56b23a8d",
+    urls = ["https://github.com/liquibase/liquibase/releases/download/v4.9.1/liquibase-4.9.1.tar.gz"],
+)
+
+http_file(
+    name = "liquibase_spanner",
+    downloaded_file_path = "liquibase-spanner-4.6.1-all.jar",
+    sha256 = "f884183810c54bff8a7cec5596f229c8b4d9ffa69f0652bfeb143f906bd2f87c",
+    urls = ["https://github.com/cloudspannerecosystem/liquibase-spanner/releases/download/4.6.1/liquibase-spanner-4.6.1-all.jar"],
+)

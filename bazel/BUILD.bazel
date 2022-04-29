@@ -105,6 +105,19 @@ container_layer(
     tars = ["@cue//file"],
 )
 
+container_layer(
+    name = "liquibase",
+    directory = "/opt/liquibase",
+    symlinks = {"/usr/bin/liquibase": "/opt/liquibase/liquibase"},
+    tars = ["@liquibase//file"],
+)
+
+container_layer(
+    name = "liquibase_spanner",
+    directory = "/opt/liquibase/lib",
+    files = ["@liquibase_spanner//file"],
+)
+
 container_image(
     name = "bazel_image",
     base = BASE_IMAGE,
@@ -114,6 +127,8 @@ container_image(
         ":bazelisk_binary",
         ":cloud_sdk_apt_packages",
         ":cue_binary",
+        ":liquibase",
+        ":liquibase_spanner",
     ],
     stamp = "@io_bazel_rules_docker//stamp:always",
 )
