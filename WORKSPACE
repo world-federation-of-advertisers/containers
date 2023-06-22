@@ -67,6 +67,6 @@ http_file(
 http_file(
     name = "cloud_sdk_apt_key",
     downloaded_file_path = "cloud-sdk-apt-key.gpg",
-    sha256 = "ff834d1e179c3727d9cd3d0c8dad763b0710241f1b64539a200fbac68aebff3e",
+    sha256 = "aa26cfdf2640ea1e02e8959b77957491cf5fb78964f06a5921e2c79607872797",
     urls = ["https://packages.cloud.google.com/apt/doc/apt-key.gpg"],
 )
