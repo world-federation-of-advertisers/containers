@@ -33,10 +33,12 @@ container_commit_install_apt_packages(
     image = BASE_IMAGE,
     packages = [
         "git",
+        "patch",
         "python3",
         "python-is-python3",
         "swig",
         "tzdata",  # For Cloud Spanner Emulator.
+        "xz-utils",
     ] + BAZEL_DEPS + CLOUD_SDK_DEPS,
     upgrade = True,
 )
@@ -119,27 +121,11 @@ container_image(
 )
 
 container_push(
-    name = "push_bazel_image_docker_hub",
-    format = "Docker",
-    image = ":bazel_image",
-    registry = "docker.io",
-    repository = "wfameasurement/bazel",
-)
-
-container_push(
-    name = "push_bazel_image_gcr",
-    format = "Docker",
-    image = ":bazel_image",
-    registry = "gcr.io",
-    repository = "ads-open-measurement/bazel",
-)
-
-container_push(
     name = "push_bazel_image",
     format = "Docker",
     image = ":bazel_image",
-    registry = "ghcr.io",
-    repository = "$(github_repo_owner)/bazel",
+    registry = "$(container_registry)",
+    repository = "$(image_repo_prefix)/bazel",
     tag = "$(image_tag)",
     tags = ["manual"],
 )

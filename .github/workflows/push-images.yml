@@ -24,17 +24,34 @@ on:
 jobs:
   push-images:
     runs-on: ubuntu-20.04
+    env:
+      CONTAINER_REGISTRY: ghcr.io
     steps:
-      - name: Check out revision
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Log in to registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - name: Authenticate to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.CONTAINER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
 
-      - name: Export IMAGE_TAG
-        env:
-          DEFAULT_BRANCH: main
-        run: ./.github/workflows/export-image-tag.sh
+      - id: get-image-tag
+        name: Get image tag
+        run: |
+          declare image_tag
+          if [[ "$GITHUB_REF_TYPE" == 'tag' ]]; then
+            image_tag="${GITHUB_REF_NAME#v}"
+          else
+            image_tag="$GITHUB_SHA"
+          fi
+          echo "image-tag=${image_tag}" >> "$GITHUB_OUTPUT"
 
       - name: Push Bazel image
-        run: bazel run //bazel:push_bazel_image --define=github_repo_owner=$GITHUB_REPOSITORY_OWNER --define=image_tag=$IMAGE_TAG
+        env:
+          IMAGE_TAG: ${{ steps.get-image-tag.outputs.image-tag }}
+        run: >
+          bazelisk run //bazel:push_bazel_image
+          --define container_registry=$CONTAINER_REGISTRY
+          --define image_repo_prefix=$GITHUB_REPOSITORY_OWNER
+          --define image_tag=$IMAGE_TAG

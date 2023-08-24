@@ -1,1 +1,5 @@
 build --action_env=DOCKER_HOST
+
+# Configuration for GitHub Container Registry
+build:ghcr --define container_registry=ghcr.io
+build:ghcr --define image_repo_prefix=world-federation-of-advertisers

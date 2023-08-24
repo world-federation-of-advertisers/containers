@@ -6,18 +6,11 @@ load(
     "http_file",
 )
 
-RULES_DOCKER_VERSION = "0.24.0"
-
 http_archive(
     name = "io_bazel_rules_docker",
-    sha256 = "27d53c1d646fc9537a70427ad7b034734d08a9c38924cc6357cc973fed300820",
-    strip_prefix = "rules_docker-{version}".format(
-        version = RULES_DOCKER_VERSION,
-    ),
+    sha256 = "b1e80761a8a8243d03ebca8845e9cc1ba6c82ce7c5179ce2b295cd36f7e394bf",
     urls = [
-        "https://github.com/bazelbuild/rules_docker/releases/download/v{version}/rules_docker-v{version}.tar.gz".format(
-            version = RULES_DOCKER_VERSION,
-        ),
+        "https://github.com/bazelbuild/rules_docker/releases/download/v0.25.0/rules_docker-v0.25.0.tar.gz",
     ],
 )
 
@@ -40,7 +33,7 @@ load(
 # docker.io/library/ubuntu:20.04
 container_pull(
     name = "ubuntu_20_04",
-    digest = "sha256:dcc176d1ab45d154b767be03c703a35fe0df16cfb1cc7ea5dd3b6f9af99b6718",
+    digest = "sha256:b795f8e0caaaacad9859a9a38fe1c78154f8301fdaf0872eaf1520d66d9c0b98",
     registry = "docker.io",
     repository = "library/ubuntu",
 )
@@ -50,16 +43,16 @@ http_file(
     name = "bazelisk",
     downloaded_file_path = "bazelisk",
     executable = True,
-    sha256 = "4cb534c52cdd47a6223d4596d530e7c9c785438ab3b0a49ff347e991c210b2cd",
-    urls = ["https://github.com/bazelbuild/bazelisk/releases/download/v1.10.1/bazelisk-linux-amd64"],
+    sha256 = "61699e22abb2a26304edfa1376f65ad24191f94a4ffed68a58d42b6fee01e124",
+    urls = ["https://github.com/bazelbuild/bazelisk/releases/download/v1.17.0/bazelisk-linux-amd64"],
 )
 
 # CUE
 http_file(
     name = "cue",
     downloaded_file_path = "cue.tar.gz",
-    sha256 = "810851e0e7d38192a6d0e09a6fa89ab5ff526ce29c9741f697995601edccb134",
-    urls = ["https://github.com/cuelang/cue/releases/download/v0.2.2/cue_0.2.2_Linux_x86_64.tar.gz"],
+    sha256 = "38c9a2f484076aeafd9f522efdee40538c31337539bd8c80a29f5c4077314e53",
+    urls = ["https://github.com/cue-lang/cue/releases/download/v0.5.0/cue_v0.5.0_linux_amd64.tar.gz"],
 )
 
 # Google Cloud SDK
