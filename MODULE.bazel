@@ -1,0 +1,64 @@
+module(name = "wfa-containers")
+
+# Bazel Central Registry deps.
+bazel_dep(name = "rules_oci", version = "1.7.4")
+bazel_dep(name = "rules_pkg", version = "0.10.1")
+bazel_dep(name = "rules_distroless", version = "0.2.1")
+
+# WFA registry deps.
+bazel_dep(name = "rules_cue", version = "0.4.0", repo_name = "wfa_rules_cue")
+
+http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
+
+# bazel
+http_file(
+    name = "bazelisk",
+    downloaded_file_path = "bazelisk",
+    executable = True,
+    sha256 = "d28b588ac0916abd6bf02defb5433f6eddf7cba35ffa808eabb65a44aab226f7",
+    urls = ["https://github.com/bazelbuild/bazelisk/releases/download/v1.19.0/bazelisk-linux-amd64"],
+)
+
+# kubectl
+http_file(
+    name = "kubectl",
+    downloaded_file_path = "kubectl",
+    executable = True,
+    sha256 = "7816d067740f47f949be826ac76943167b7b3a38c4f0c18b902fffa8779a5afa",
+    urls = ["https://dl.k8s.io/release/v1.29.2/bin/linux/amd64/kubectl"],
+)
+
+_XZ_DEB_BUILD = """\
+genrule(
+    name = "decompress_data",
+    srcs = ["data.tar.xz"],
+    outs = ["layer.tar"],
+    cmd = "xz --decompress --stdout $< >$@",
+)
+
+alias(
+    name = "layer",
+    actual = ":layer.tar",
+    visibility = ["//visibility:public"],
+)
+"""
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# gcloud
+http_archive(
+    name = "google_cloud_cli",
+    build_file_content = _XZ_DEB_BUILD,
+    sha256 = "568366af2c266f73f44b302536eb2b7e143d67d783aaf0f89452dbd8ca805410",
+    urls = [
+        "https://packages.cloud.google.com/apt/pool/google-cloud-cli_455.0.0-0_all_568366af2c266f73f44b302536eb2b7e143d67d783aaf0f89452dbd8ca805410.deb",
+    ],
+)
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "debian_bookworm_slim",
+    digest = "sha256:55693b5c400737391c2653f1d6e38d52bbe86158e4f41fe14c24e106b56fc1d7",
+    image = "docker.io/library/debian",
+)
+use_repo(oci, "debian_bookworm_slim")

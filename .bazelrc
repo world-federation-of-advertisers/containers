@@ -1,1 +1,7 @@
-build --action_env=DOCKER_HOST
+common --enable_bzlmod
+common --registry=https://raw.githubusercontent.com/world-federation-of-advertisers/bazel-registry/main
+common --registry=https://bcr.bazel.build
+
+# Configuration for continuous integration (CI).
+common:ci --lockfile_mode=error
+build:ci --compilation_mode=opt

@@ -23,10 +23,14 @@ on:
 
 jobs:
   push-images:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out revision
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Write .bazelrc
+        run: |
+          echo 'common --config=ci' > ~/.bazelrc
 
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
@@ -37,4 +41,8 @@ jobs:
         run: ./.github/workflows/export-image-tag.sh
 
       - name: Push Bazel image
-        run: bazel run //bazel:push_bazel_image --define=github_repo_owner=$GITHUB_REPOSITORY_OWNER --define=image_tag=$IMAGE_TAG
+        run: >
+          bazel run //bazel:push_bazel_image
+          --define=container_registry=ghcr.io
+          --define=image_repo_prefix=$GITHUB_REPOSITORY_OWNER
+          --define=image_tag=$IMAGE_TAG
