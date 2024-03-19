@@ -4,3 +4,5 @@
 
 third_party/
 node_modules/
+packages.lock
+snapshots.yaml

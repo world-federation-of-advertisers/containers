@@ -1,145 +1,95 @@
 # Bazel build environment image.
 
-load("//:constants.bzl", "DEBIAN_JAVA_11")
-load("//:defs.bzl", "container_commit_add_apt_key", "container_commit_install_apt_packages")
-load(
-    "@io_bazel_rules_docker//container:container.bzl",
-    "container_image",
-    "container_layer",
-    "container_push",
+load("@debian_packages//:packages.bzl", "debfile_layer", "debian_package_layer")
+load("@rules_distroless//distroless:defs.bzl", "cacerts")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_push_rule", "oci_tarball")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+load("//:constants.bzl", "DEBIAN_JAVA_17")
+
+JAVA = DEBIAN_JAVA_17
+
+cacerts(
+    name = "ca_certs",
+    package = debfile_layer("ca-certificates"),
 )
 
-JAVA = DEBIAN_JAVA_11
-
-BASE_IMAGE = "@ubuntu_20_04//image"
-
-# Bazel requires zip/unzip, a C++ compiler, and a JDK.
-# See https://docs.bazel.build/versions/3.7.0/install-ubuntu.html#step-1-install-required-packages
-BAZEL_DEPS = [
-    "clang",
-    "openjdk-11-jdk-headless",
-    "unzip",
-    "zip",
-]
-
-CLOUD_SDK_DEPS = [
-    "apt-transport-https",
+DEBIAN_PACKAGES = [
+    "base-files",
+    "netbase",
     "ca-certificates",
-    "gnupg",
+    "tzdata",
+    "zip",
+    "unzip",
+    "git",
+    "openjdk-17-jdk-headless",
+    "python3",
+    "python-is-python3",
+    "clang",
+    "swig",
 ]
 
-container_commit_install_apt_packages(
-    name = "apt_packages",
-    image = BASE_IMAGE,
-    packages = [
-        "git",
-        "python3",
-        "python-is-python3",
-        "swig",
-        "tzdata",  # For Cloud Spanner Emulator.
-    ] + BAZEL_DEPS + CLOUD_SDK_DEPS,
-    upgrade = True,
+pkg_tar(
+    name = "debian_packages",
+    deps = [debian_package_layer(package) for package in DEBIAN_PACKAGES],
 )
 
-container_layer(
-    name = "cloud_sdk_apt_key",
-    directory = "/tmp",
-    files = ["@cloud_sdk_apt_key//file"],
-)
-
-container_image(
-    name = "cloud_sdk_apt_key_image",
-    base = BASE_IMAGE,
-    layers = [
-        ":apt_packages",
-        ":cloud_sdk_apt_key",
-    ],
-)
-
-container_commit_add_apt_key(
-    name = "cloud_sdk_apt_keyring",
-    image = ":cloud_sdk_apt_key_image.tar",
-    key_path = "/tmp/cloud-sdk-apt-key.gpg",
-    keyring_path = "/usr/share/keyrings/cloud.google.gpg",
-)
-
-container_layer(
-    name = "cloud_sdk_apt_source",
-    directory = "/etc/apt/sources.list.d",
-    files = ["google-cloud-sdk.list"],
-)
-
-container_image(
-    name = "cloud_sdk_apt_image",
-    base = BASE_IMAGE,
-    layers = [
-        ":apt_packages",
-        ":cloud_sdk_apt_keyring",
-        ":cloud_sdk_apt_source",
-    ],
-)
-
-container_commit_install_apt_packages(
-    name = "cloud_sdk_apt_packages",
-    image = ":cloud_sdk_apt_image.tar",
-    packages = [
-        "google-cloud-sdk",
-        "kubectl",
-    ],
-)
-
-container_layer(
-    name = "bazelisk_binary",
-    directory = "/usr/bin",
-    files = [
+pkg_tar(
+    name = "executables",
+    srcs = [
         "@bazelisk//file",
+        "@kubectl//file",
+        "@wfa_rules_cue//cue:cue_cli",
     ],
-    mode = "0o755",
-    symlinks = {"/usr/bin/bazel": "/usr/bin/bazelisk"},
+    mode = "0755",
+    remap_paths = {
+        "/bazelisk": "/usr/bin/bazelisk",
+        "/cue": "/usr/bin/cue",
+        "/kubectl": "/usr/bin/kubectl",
+    },
+    symlinks = {
+        "/usr/bin/bazel": "/usr/bin/bazelisk",
+        "/bin/bash": "/usr/bin/bash",
+        "/bin/sh": "/usr/bin/bash",
+    },
 )
 
-container_layer(
-    name = "cue_binary",
-    directory = "/opt/cue",
-    symlinks = {"/usr/bin/cue": "/opt/cue/cue"},
-    tars = ["@cue//file"],
-)
-
-container_image(
+oci_image(
     name = "bazel_image",
-    base = BASE_IMAGE,
+    base = "@debian_bookworm_slim",
     env = JAVA.env,
-    layers = [
-        ":apt_packages",
-        ":bazelisk_binary",
-        ":cloud_sdk_apt_packages",
-        ":cue_binary",
+    tars = [
+        ":debian_packages",
+        ":ca_certs",
+        ":executables",
+        "@google_cloud_cli//:layer",
     ],
-    stamp = "@io_bazel_rules_docker//stamp:always",
 )
 
-container_push(
-    name = "push_bazel_image_docker_hub",
-    format = "Docker",
-    image = ":bazel_image",
-    registry = "docker.io",
-    repository = "wfameasurement/bazel",
-)
-
-container_push(
-    name = "push_bazel_image_gcr",
-    format = "Docker",
-    image = ":bazel_image",
-    registry = "gcr.io",
-    repository = "ads-open-measurement/bazel",
-)
-
-container_push(
-    name = "push_bazel_image",
-    format = "Docker",
-    image = ":bazel_image",
-    registry = "ghcr.io",
-    repository = "$(github_repo_owner)/bazel",
-    tag = "$(image_tag)",
+genrule(
+    name = "gen_repository_file",
+    outs = ["repository.txt"],
+    cmd = "echo $(container_registry)/$(image_repo_prefix)/bazel > $@",
     tags = ["manual"],
+)
+
+genrule(
+    name = "gen_remote_tags_file",
+    outs = ["remote_tags.txt"],
+    cmd = "echo $(image_tag) > $@",
+    tags = ["manual"],
+)
+
+oci_push_rule(
+    name = "push_bazel_image",
+    image = ":bazel_image",
+    remote_tags = ":remote_tags.txt",
+    repository_file = ":repository.txt",
+    tags = ["manual"],
+)
+
+oci_tarball(
+    name = "docker_load_bazel_image",
+    format = "docker",
+    image = ":bazel_image",
+    repo_tags = ["bazel:latest"],
 )

@@ -25,15 +25,19 @@ on:
 jobs:
   build-test:
     name: Build and test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Bazel
         run: |
           mkdir -p ~/.local/bin
           bazelisk_path="$(which bazelisk)"
           ln -s "${bazelisk_path}" ~/.local/bin/bazel
+
+      - name: Write .bazelrc
+        run: |
+          echo 'common --config=ci' > ~/.bazelrc
 
       - name: Get Bazel cache params
         id: get-cache-params
