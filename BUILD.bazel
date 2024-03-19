@@ -1,0 +1,5 @@
+load("@rules_debian_packages//debian_packages:defs.bzl", "debian_packages_lockfile")
+
+debian_packages_lockfile(
+    name = "debian_packages",
+)

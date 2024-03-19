@@ -1,10 +1,10 @@
-# Copyright 2020 The Cross-Media Measurement Authors
+# Copyright 2024 The Cross-Media Measurement Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,16 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Shared constants for container build targets."""
-
-_DEBIAN_JAVA_17_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"
-_DEBIAN_JAVA_17_BIN = _DEBIAN_JAVA_17_HOME + "/bin"
-
-DEBIAN_JAVA_17 = struct(
-    home = _DEBIAN_JAVA_17_HOME,
-    bin = _DEBIAN_JAVA_17_BIN,
-    env = {
-        "JAVA_HOME": _DEBIAN_JAVA_17_HOME,
-        "PATH": _DEBIAN_JAVA_17_BIN + ":$$PATH",
-    },
-)
+- distros: ["debian12"]
+  archs: ["amd64"]
+  packages:
+    - base-files
+    - netbase
+    - ca-certificates
+    - tzdata
+    - zip
+    - unzip
+    - git
+    - openjdk-17-jdk-headless
+    - python3
+    - python-is-python3
+    - clang
+    - swig
