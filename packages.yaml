@@ -27,3 +27,4 @@
     - python-is-python3
     - clang
     - swig
+    - libclang-rt-14-dev
