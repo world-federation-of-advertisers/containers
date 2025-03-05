@@ -57,10 +57,10 @@
           "version": "1:14.0.6-12"
         },
         {
-          "name": "debconf",
-          "sha256": "74ab14194a3762b2fc717917dcfda42929ab98e3c59295a063344dc551cd7cc8",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/d/debconf/debconf_1.5.82_all.deb",
-          "version": "1.5.82"
+          "name": "debconf_2_0",
+          "sha256": "2e9de88b4cb8a2ceadb785fabff028d883f9a6c3528916464fb38f4837c15627",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/c/cdebconf/cdebconf_0.270_amd64.deb",
+          "version": null
         },
         {
           "name": "dpkg",
@@ -73,12 +73,6 @@
           "sha256": "281c66e46b95f045a0282a6c7a03b33de0e9a08d016897a759aaf4a04adfddbe",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/f/fontconfig/fontconfig-config_2.14.1-4_amd64.deb",
           "version": "2.14.1-4"
-        },
-        {
-          "name": "fonts_urw_base35",
-          "sha256": "93e4997c99c4c31ea88c5d37e2259af0a0c826b9358931d5a69f794f7f0c73ac",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/f/fonts-urw-base35/fonts-urw-base35_20200910-7_all.deb",
-          "version": "20200910-7"
         },
         {
           "name": "gcc_12_base",
@@ -99,16 +93,22 @@
           "version": "1:2.39.2-1.1"
         },
         {
-          "name": "install_info",
-          "sha256": "015b1986fd8a2dc8e37fe8cddffe6263750bcecce7946dc4df80eff940dfe900",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/t/texinfo/install-info_6.8-6+b1_amd64.deb",
-          "version": "6.8-6+b1"
-        },
-        {
           "name": "java_common",
           "sha256": "1133db3d800fce107089fbee5d435c67d30deed18978af2635c8e7bc45bfc550",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/j/java-common/java-common_0.74_all.deb",
           "version": "0.74"
+        },
+        {
+          "name": "lib32gcc_s1",
+          "sha256": "ff4f072240aba8a03e11084d9df124fffbcd111b295d95af47225e2c152799a3",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/g/gcc-12/lib32gcc-s1_12.2.0-14_amd64.deb",
+          "version": "12.2.0-14"
+        },
+        {
+          "name": "lib32stdcpp6",
+          "sha256": "02b6069131f394d5443879bac3fbebd237e0dc01a63ac0c182efd5be9a3354f4",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/g/gcc-12/lib32stdc++6_12.2.0-14_amd64.deb",
+          "version": "12.2.0-14"
         },
         {
           "name": "libacl1",
@@ -213,6 +213,12 @@
           "version": "2.36-9+deb12u4"
         },
         {
+          "name": "libc6_i386",
+          "sha256": "3d7eb412718c9ba990497cc79a658961a2eaa0e2481cb8621519ab87dca936bd",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/g/glibc/libc6-i386_2.36-9+deb12u4_amd64.deb",
+          "version": "2.36-9+deb12u4"
+        },
+        {
           "name": "libc_dev_bin",
           "sha256": "54a7b10a46f30276713c25d684e530512ac50ded3cae7d199d6d8dee53e74ac0",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/g/glibc/libc-dev-bin_2.36-9+deb12u4_amd64.deb",
@@ -246,6 +252,12 @@
           "name": "libclang_cpp14",
           "sha256": "964b13d74e9aece340cde93fecd2a2f18dd63afcb707a797ce7b39d430a01c46",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/llvm-toolchain-14/libclang-cpp14_14.0.6-12_amd64.deb",
+          "version": "1:14.0.6-12"
+        },
+        {
+          "name": "libclang_rt_14_dev",
+          "sha256": "180c4d27fdc912e2e5de21f383aff07d27e1745c34591a41e4d12ff70be54764",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/llvm-toolchain-14/libclang-rt-14-dev_14.0.6-12_amd64.deb",
           "version": "1:14.0.6-12"
         },
         {
@@ -331,12 +343,6 @@
           "sha256": "16ee38d374e064f534116dc442b086ef26f9831f1c0af7e5fb4fe4512e700649",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/f/fontconfig/libfontconfig1_2.14.1-4_amd64.deb",
           "version": "2.14.1-4"
-        },
-        {
-          "name": "libfontenc1",
-          "sha256": "1d0aa6ea16a34a8de1ea170360c4cb699f3239aeddb292df2d2c4eb6e835de4b",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/libf/libfontenc/libfontenc1_1.1.4-1_amd64.deb",
-          "version": "1:1.1.4-1"
         },
         {
           "name": "libfreetype6",
@@ -825,16 +831,16 @@
           "version": "1:14.0.6-12"
         },
         {
-          "name": "lsb_base",
-          "sha256": "f8bedd167280e76636df3a1bc023cd2906d458916c1af4c1d7912c5b971fc642",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/lsb/lsb-base_11.6_all.deb",
-          "version": "11.6"
+          "name": "mailcap",
+          "sha256": "d6c1e3c60a4b6feb107bd2d4134ea01694e9e8c9fd513639d58b649705a18fcf",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/m/mailcap/mailcap_3.70+nmu1_all.deb",
+          "version": "3.70+nmu1"
         },
         {
-          "name": "media_types",
-          "sha256": "aaa46dcb3b39948ae2e0fdb72cfcb2f48c0b59f19785a3da8045c05eb19955dd",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/m/media-types/media-types_10.0.0_all.deb",
-          "version": "10.0.0"
+          "name": "mime_support",
+          "sha256": "b964e671e6c47674879a3e54130b6737e8760fbd3da6afcc015faa174af98ba0",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/m/mime-support/mime-support_3.66_all.deb",
+          "version": "3.66"
         },
         {
           "name": "netbase",
@@ -933,16 +939,16 @@
           "version": "4.1.0-0.2"
         },
         {
-          "name": "sysvinit_utils",
-          "sha256": "11790842108768ec52432ea22e7b4f057232813b7c27ef6dfe1aba776a5cb90e",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/s/sysvinit/sysvinit-utils_3.06-4_amd64.deb",
-          "version": "3.06-4"
-        },
-        {
           "name": "tar",
           "sha256": "24fb92e98c2969171f81a8b589263d705f6b1670f95d121cd74c810d4605acc3",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/t/tar/tar_1.34+dfsg-1.2+deb12u1_amd64.deb",
           "version": "1.34+dfsg-1.2+deb12u1"
+        },
+        {
+          "name": "ttf_bitstream_vera",
+          "sha256": "a37a3f8324e6ba313dd8aaf947bb534b3ff9ed53e8598baa8f519b1611cc38df",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/t/ttf-bitstream-vera/ttf-bitstream-vera_1.10-8.2_all.deb",
+          "version": "1.10-8.2"
         },
         {
           "name": "tzdata",
@@ -967,24 +973,6 @@
           "sha256": "665732aacbb8cb82cc5f33d0b6f31849001a02be074743fa5dd3ec218b95b48e",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/u/util-linux/util-linux-extra_2.38.1-5+b1_amd64.deb",
           "version": "2.38.1-5+b1"
-        },
-        {
-          "name": "x11_common",
-          "sha256": "fc97c2f4495eb33a77501c7960928c0d2001e5c4b2aa438f1713e2082c23bacd",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/x/xorg/x11-common_7.7+23_all.deb",
-          "version": "1:7.7+23"
-        },
-        {
-          "name": "xfonts_encodings",
-          "sha256": "56143f317d241b6dee0275aa1066df936a776810d3bb83fe58563965d9bbe3d3",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/x/xfonts-encodings/xfonts-encodings_1.0.4-2.2_all.deb",
-          "version": "1:1.0.4-2.2"
-        },
-        {
-          "name": "xfonts_utils",
-          "sha256": "20b290277caff5bae41298c4e171fb81c29560294f60f5eeb47ef50863efc0d7",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/x/xfonts-utils/xfonts-utils_7.7+6_amd64.deb",
-          "version": "1:7.7+6"
         },
         {
           "name": "zip",
@@ -1012,7 +1000,7 @@
         },
         {
           "dependencies": [
-            "debconf",
+            "debconf_2_0",
             "gcc_12_base",
             "libc6",
             "libgcc_s1",
@@ -1141,6 +1129,18 @@
           "name": "git"
         },
         {
+          "dependencies": [
+            "gcc_12_base",
+            "lib32gcc_s1",
+            "lib32stdcpp6",
+            "libc6",
+            "libc6_i386",
+            "libgcc_s1",
+            "libstdcpp6"
+          ],
+          "name": "libclang_rt_14_dev"
+        },
+        {
           "dependencies": [],
           "name": "netbase"
         },
@@ -1148,9 +1148,8 @@
           "dependencies": [
             "ca_certificates",
             "ca_certificates_java",
-            "debconf",
+            "debconf_2_0",
             "fontconfig_config",
-            "fonts_urw_base35",
             "gcc_12_base",
             "java_common",
             "libasound2",
@@ -1172,7 +1171,6 @@
             "libexpat1",
             "libffi8",
             "libfontconfig1",
-            "libfontenc1",
             "libfreetype6",
             "libgcc_s1",
             "libgcrypt20",
@@ -1214,23 +1212,20 @@
             "libunistring2",
             "libuuid1",
             "libzstd1",
-            "lsb_base",
             "openjdk_17_jre_headless",
             "openssl",
-            "sysvinit_utils",
+            "ttf_bitstream_vera",
             "util_linux",
             "util_linux_extra",
-            "x11_common",
-            "xfonts_encodings",
-            "xfonts_utils",
             "zlib1g"
           ],
           "name": "openjdk_17_jdk_headless"
         },
         {
           "dependencies": [
+            "dpkg",
             "gcc_12_base",
-            "install_info",
+            "libacl1",
             "libbz2_1_0",
             "libc6",
             "libcom_err2",
@@ -1239,37 +1234,50 @@
             "libexpat1",
             "libffi8",
             "libgcc_s1",
+            "libgdbm6",
+            "libgdbm_compat4",
             "libgssapi_krb5_2",
             "libk5crypto3",
             "libkeyutils1",
             "libkrb5_3",
             "libkrb5support0",
             "liblzma5",
+            "libmd0",
             "libncursesw6",
             "libnsl2",
+            "libpcre2_8_0",
+            "libperl5_36",
             "libpython3_11_minimal",
             "libpython3_11_stdlib",
             "libpython3_stdlib",
             "libreadline8",
+            "libselinux1",
             "libsqlite3_0",
             "libssl3",
             "libtinfo6",
             "libtirpc3",
             "libtirpc_common",
             "libuuid1",
-            "media_types",
+            "libzstd1",
+            "mailcap",
+            "mime_support",
+            "perl",
+            "perl_base",
+            "perl_modules_5_36",
             "python3_11",
             "python3_11_minimal",
             "python3_minimal",
             "readline_common",
+            "tar",
             "zlib1g"
           ],
           "name": "python3"
         },
         {
           "dependencies": [
+            "dpkg",
             "gcc_12_base",
-            "install_info",
+            "libacl1",
             "libbz2_1_0",
             "libc6",
             "libcom_err2",
@@ -1278,30 +1286,42 @@
             "libexpat1",
             "libffi8",
             "libgcc_s1",
+            "libgdbm6",
+            "libgdbm_compat4",
             "libgssapi_krb5_2",
             "libk5crypto3",
             "libkeyutils1",
             "libkrb5_3",
             "libkrb5support0",
             "liblzma5",
+            "libmd0",
             "libncursesw6",
             "libnsl2",
+            "libpcre2_8_0",
+            "libperl5_36",
             "libpython3_11_minimal",
             "libpython3_11_stdlib",
             "libpython3_stdlib",
             "libreadline8",
+            "libselinux1",
             "libsqlite3_0",
             "libssl3",
             "libtinfo6",
             "libtirpc3",
             "libtirpc_common",
             "libuuid1",
-            "media_types",
+            "libzstd1",
+            "mailcap",
+            "mime_support",
+            "perl",
+            "perl_base",
+            "perl_modules_5_36",
             "python3",
             "python3_11",
             "python3_11_minimal",
             "python3_minimal",
             "readline_common",
+            "tar",
             "zlib1g"
           ],
           "name": "python_is_python3"
@@ -1319,7 +1339,7 @@
         },
         {
           "dependencies": [
-            "debconf"
+            "debconf_2_0"
           ],
           "name": "tzdata"
         },
