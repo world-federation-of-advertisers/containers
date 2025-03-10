@@ -3,7 +3,7 @@ module(name = "wfa-containers")
 # Bazel Central Registry deps.
 bazel_dep(name = "rules_oci", version = "1.7.4")
 bazel_dep(name = "rules_pkg", version = "0.10.1")
-bazel_dep(name = "rules_distroless", version = "0.2.1")
+bazel_dep(name = "rules_distroless", version = "0.5.1")
 
 # WFA registry deps.
 bazel_dep(name = "rules_cue", version = "0.4.0", repo_name = "wfa_rules_cue")
@@ -51,7 +51,7 @@ http_archive(
     build_file_content = _XZ_DEB_BUILD,
     sha256 = "568366af2c266f73f44b302536eb2b7e143d67d783aaf0f89452dbd8ca805410",
     urls = [
-        "https://packages.cloud.google.com/apt/pool/google-cloud-cli_455.0.0-0_all_568366af2c266f73f44b302536eb2b7e143d67d783aaf0f89452dbd8ca805410.deb",
+        "https://packages.cloud.google.com/apt/pool/cloud-sdk/google-cloud-cli_455.0.0-0_all_2ea45cb35154dc574cecab4cf43dbfdb.deb",
     ],
 )
 
