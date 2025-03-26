@@ -57,10 +57,10 @@
           "version": "1:14.0.6-12"
         },
         {
-          "name": "debconf",
-          "sha256": "74ab14194a3762b2fc717917dcfda42929ab98e3c59295a063344dc551cd7cc8",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/d/debconf/debconf_1.5.82_all.deb",
-          "version": "1.5.82"
+          "name": "debconf_2_0",
+          "sha256": "2e9de88b4cb8a2ceadb785fabff028d883f9a6c3528916464fb38f4837c15627",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/c/cdebconf/cdebconf_0.270_amd64.deb",
+          "version": null
         },
         {
           "name": "dpkg",
@@ -75,10 +75,10 @@
           "version": "2.14.1-4"
         },
         {
-          "name": "fonts_freefont_otf",
-          "sha256": "0b63996c80c6c660424af6d3832818e647960d6f65a51de010bb57dd0762faa7",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/f/fonts-freefont/fonts-freefont-otf_20120503-10_all.deb",
-          "version": "20120503-10"
+          "name": "fonts_dejavu_core",
+          "sha256": "8892669e51aab4dc56682c8e39d8ddb7d70fad83c369344e1e240bf3ca22bb76",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/f/fonts-dejavu/fonts-dejavu-core_2.37-6_all.deb",
+          "version": "2.37-6"
         },
         {
           "name": "gcc_12_base",
@@ -97,6 +97,12 @@
           "sha256": "34097adaf793f92cc93c8f07059d34766a6a8f2b1d0b1b74b9bb530516402642",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/g/git/git-man_2.39.2-1.1_all.deb",
           "version": "1:2.39.2-1.1"
+        },
+        {
+          "name": "install_info",
+          "sha256": "015b1986fd8a2dc8e37fe8cddffe6263750bcecce7946dc4df80eff940dfe900",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/t/texinfo/install-info_6.8-6+b1_amd64.deb",
+          "version": "6.8-6+b1"
         },
         {
           "name": "java_common",
@@ -312,6 +318,12 @@
           "name": "libcurl3_gnutls",
           "sha256": "9751239757dcc218a3cd5a5772070e33d86a8a15506fe5af8a47793d61fa2abc",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/c/curl/libcurl3-gnutls_7.88.1-10+deb12u5_amd64.deb",
+          "version": "7.88.1-10+deb12u5"
+        },
+        {
+          "name": "libcurl3_nss",
+          "sha256": "195229b37b908cc0466b6094f0bd476eb748632fb7d39a4b82211f04b2b77f41",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/c/curl/libcurl3-nss_7.88.1-10+deb12u5_amd64.deb",
           "version": "7.88.1-10+deb12u5"
         },
         {
@@ -645,6 +657,12 @@
           "version": "5.36.0-7+deb12u1"
         },
         {
+          "name": "libpfm4",
+          "sha256": "739c1255e9f39f6b094780ed02665eeb58abe5cfa7a156d83dfac45c34e8fe87",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/libp/libpfm4/libpfm4_4.13.0-1_amd64.deb",
+          "version": "4.13.0-1"
+        },
+        {
           "name": "libpng16_16",
           "sha256": "dc32727dca9a87ba317da7989572011669f568d10159b9d8675ed7aedd26d686",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/libp/libpng1.6/libpng16-16_1.6.39-2_amd64.deb",
@@ -837,22 +855,58 @@
           "version": "6.1.76-1"
         },
         {
+          "name": "llvm",
+          "sha256": "4db49084b2fcf402d3a0c060b42b032420b9e9eed8228e6b37e016da89acceb1",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/llvm-defaults/llvm_14.0-55.7~deb12u1_amd64.deb",
+          "version": "1:14.0-55.7~deb12u1"
+        },
+        {
+          "name": "llvm_14",
+          "sha256": "228b10afde4f9cae59c8bbc4f4ea973f1f192d957c19f0427aafb78ab24e3b29",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/llvm-toolchain-14/llvm-14_14.0.6-12_amd64.deb",
+          "version": "1:14.0.6-12"
+        },
+        {
           "name": "llvm_14_linker_tools",
           "sha256": "6aa497a334836a9bfa7e2cc6d24edea553467482b6f6493154f766bbb697e846",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/llvm-toolchain-14/llvm-14-linker-tools_14.0.6-12_amd64.deb",
           "version": "1:14.0.6-12"
         },
         {
-          "name": "media_types",
-          "sha256": "aaa46dcb3b39948ae2e0fdb72cfcb2f48c0b59f19785a3da8045c05eb19955dd",
-          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/m/media-types/media-types_10.0.0_all.deb",
-          "version": "10.0.0"
+          "name": "llvm_14_runtime",
+          "sha256": "d9284f6434963a5d338c0851967adfb383182f513f0b1c8135b26cd7af5b2834",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/llvm-toolchain-14/llvm-14-runtime_14.0.6-12_amd64.deb",
+          "version": "1:14.0.6-12"
+        },
+        {
+          "name": "llvm_runtime",
+          "sha256": "21af65560d807606d42540f845b5666b69d8fecca3c77661917db55d674c0a55",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/l/llvm-defaults/llvm-runtime_14.0-55.7~deb12u1_amd64.deb",
+          "version": "1:14.0-55.7~deb12u1"
+        },
+        {
+          "name": "mailcap",
+          "sha256": "d6c1e3c60a4b6feb107bd2d4134ea01694e9e8c9fd513639d58b649705a18fcf",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/m/mailcap/mailcap_3.70+nmu1_all.deb",
+          "version": "3.70+nmu1"
+        },
+        {
+          "name": "mime_support",
+          "sha256": "b964e671e6c47674879a3e54130b6737e8760fbd3da6afcc015faa174af98ba0",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/m/mime-support/mime-support_3.66_all.deb",
+          "version": "3.66"
         },
         {
           "name": "netbase",
           "sha256": "29b23c48c0fe6f878e56c5ddc9f65d1c05d729360f3690a593a8c795031cd867",
           "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/n/netbase/netbase_6.4_all.deb",
           "version": "6.4"
+        },
+        {
+          "name": "nss_plugin_pem",
+          "sha256": "5097968e9c8e70d5a1cb30daec2896ed0a9b5c4fc4664066975cb1813b267c5c",
+          "url": "https://snapshot.debian.org/archive/debian/20240313T032420Z/pool/main/n/nss-pem/nss-plugin-pem_1.0.8+1-1_amd64.deb",
+          "version": "1.0.8+1-1"
         },
         {
           "name": "openjdk_17_jdk_headless",
@@ -1000,7 +1054,7 @@
         },
         {
           "dependencies": [
-            "debconf",
+            "debconf_2_0",
             "gcc_12_base",
             "libc6",
             "libgcc_s1",
@@ -1142,6 +1196,61 @@
           "name": "libclang_rt_dev"
         },
         {
+          "dependencies": [
+            "gcc_12_base",
+            "libbrotli1",
+            "libbsd0",
+            "libc6",
+            "libcom_err2",
+            "libcurl3_nss",
+            "libdb5_3",
+            "libedit2",
+            "libffi8",
+            "libgcc_s1",
+            "libgmp10",
+            "libgnutls30",
+            "libgssapi_krb5_2",
+            "libhogweed6",
+            "libicu72",
+            "libidn2_0",
+            "libk5crypto3",
+            "libkeyutils1",
+            "libkrb5_3",
+            "libkrb5support0",
+            "libldap_2_5_0",
+            "libllvm14",
+            "liblzma5",
+            "libmd0",
+            "libnettle8",
+            "libnghttp2_14",
+            "libnspr4",
+            "libnss3",
+            "libp11_kit0",
+            "libpfm4",
+            "libpsl5",
+            "librtmp1",
+            "libsasl2_2",
+            "libsasl2_modules_db",
+            "libsqlite3_0",
+            "libssh2_1",
+            "libssl3",
+            "libstdcpp6",
+            "libtasn1_6",
+            "libtinfo6",
+            "libunistring2",
+            "libxml2",
+            "libz3_4",
+            "libzstd1",
+            "llvm_14",
+            "llvm_14_linker_tools",
+            "llvm_14_runtime",
+            "llvm_runtime",
+            "nss_plugin_pem",
+            "zlib1g"
+          ],
+          "name": "llvm"
+        },
+        {
           "dependencies": [],
           "name": "netbase"
         },
@@ -1149,9 +1258,9 @@
           "dependencies": [
             "ca_certificates",
             "ca_certificates_java",
-            "debconf",
+            "debconf_2_0",
             "fontconfig_config",
-            "fonts_freefont_otf",
+            "fonts_dejavu_core",
             "gcc_12_base",
             "java_common",
             "libasound2",
@@ -1224,9 +1333,8 @@
         },
         {
           "dependencies": [
-            "dpkg",
             "gcc_12_base",
-            "libacl1",
+            "install_info",
             "libbz2_1_0",
             "libc6",
             "libcom_err2",
@@ -1235,43 +1343,44 @@
             "libexpat1",
             "libffi8",
             "libgcc_s1",
+            "libgdbm6",
+            "libgdbm_compat4",
             "libgssapi_krb5_2",
             "libk5crypto3",
             "libkeyutils1",
             "libkrb5_3",
             "libkrb5support0",
             "liblzma5",
-            "libmd0",
             "libncursesw6",
             "libnsl2",
-            "libpcre2_8_0",
+            "libperl5_36",
             "libpython3_11_minimal",
             "libpython3_11_stdlib",
             "libpython3_stdlib",
             "libreadline8",
-            "libselinux1",
             "libsqlite3_0",
             "libssl3",
             "libtinfo6",
             "libtirpc3",
             "libtirpc_common",
             "libuuid1",
-            "libzstd1",
-            "media_types",
+            "mailcap",
+            "mime_support",
+            "perl",
+            "perl_base",
+            "perl_modules_5_36",
             "python3_11",
             "python3_11_minimal",
             "python3_minimal",
             "readline_common",
-            "tar",
             "zlib1g"
           ],
           "name": "python3"
         },
         {
           "dependencies": [
-            "dpkg",
             "gcc_12_base",
-            "libacl1",
+            "install_info",
             "libbz2_1_0",
             "libc6",
             "libcom_err2",
@@ -1280,35 +1389,37 @@
             "libexpat1",
             "libffi8",
             "libgcc_s1",
+            "libgdbm6",
+            "libgdbm_compat4",
             "libgssapi_krb5_2",
             "libk5crypto3",
             "libkeyutils1",
             "libkrb5_3",
             "libkrb5support0",
             "liblzma5",
-            "libmd0",
             "libncursesw6",
             "libnsl2",
-            "libpcre2_8_0",
+            "libperl5_36",
             "libpython3_11_minimal",
             "libpython3_11_stdlib",
             "libpython3_stdlib",
             "libreadline8",
-            "libselinux1",
             "libsqlite3_0",
             "libssl3",
             "libtinfo6",
             "libtirpc3",
             "libtirpc_common",
             "libuuid1",
-            "libzstd1",
-            "media_types",
+            "mailcap",
+            "mime_support",
+            "perl",
+            "perl_base",
+            "perl_modules_5_36",
             "python3",
             "python3_11",
             "python3_11_minimal",
             "python3_minimal",
             "readline_common",
-            "tar",
             "zlib1g"
           ],
           "name": "python_is_python3"
@@ -1326,7 +1437,7 @@
         },
         {
           "dependencies": [
-            "debconf"
+            "debconf_2_0"
           ],
           "name": "tzdata"
         },
