@@ -27,6 +27,7 @@ DEBIAN_PACKAGES = [
     "clang",
     "swig",
     "libclang-rt-dev",
+    "llvm",
 ]
 
 pkg_tar(
