@@ -34,7 +34,7 @@ load("@rules_debian_packages//debian_packages:defs.bzl", "debian_packages_reposi
 debian_packages_repository(
     name = "debian_packages",
     default_arch = "amd64",
-    default_distro = "debian12",
+    default_distro = "debian13",
     lock_file = "//:packages.lock",
 )
 

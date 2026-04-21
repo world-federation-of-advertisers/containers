@@ -21,7 +21,6 @@ DEBIAN_PACKAGES = [
     "zip",
     "unzip",
     "git",
-    "openjdk-17-jdk-headless",
     "python3",
     "python-is-python3",
     "clang",
@@ -57,12 +56,13 @@ pkg_tar(
 
 oci_image(
     name = "bazel_image",
-    base = "@debian_bookworm_slim",
+    base = "@debian_trixie_slim",
     env = JAVA.env,
     tars = [
         ":debian_packages",
         ":ca_certs",
         ":executables",
+        "@temurin_17_jdk//:layer",
         "@google_cloud_cli//:layer",
     ],
 )
