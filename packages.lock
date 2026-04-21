@@ -75,10 +75,10 @@
           "version": "2.14.1-4"
         },
         {
-          "name": "fonts_urw_base35",
-          "sha256": "93e4997c99c4c31ea88c5d37e2259af0a0c826b9358931d5a69f794f7f0c73ac",
-          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/f/fonts-urw-base35/fonts-urw-base35_20200910-7_all.deb",
-          "version": "20200910-7"
+          "name": "fonts_liberation2",
+          "sha256": "35ffaa54f117e633e89a5da89af235a073b34dbe582726fbf6989568f7fd9bda",
+          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/f/fonts-liberation2/fonts-liberation2_2.1.5-1_all.deb",
+          "version": "2.1.5-1"
         },
         {
           "name": "gcc_12_base",
@@ -361,12 +361,6 @@
           "sha256": "16ee38d374e064f534116dc442b086ef26f9831f1c0af7e5fb4fe4512e700649",
           "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/f/fontconfig/libfontconfig1_2.14.1-4_amd64.deb",
           "version": "2.14.1-4"
-        },
-        {
-          "name": "libfontenc1",
-          "sha256": "1d0aa6ea16a34a8de1ea170360c4cb699f3239aeddb292df2d2c4eb6e835de4b",
-          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/libf/libfontenc/libfontenc1_1.1.4-1_amd64.deb",
-          "version": "1:1.1.4-1"
         },
         {
           "name": "libfreetype6",
@@ -885,12 +879,6 @@
           "version": "1:14.0-55.7~deb12u1"
         },
         {
-          "name": "lsb_base",
-          "sha256": "f8bedd167280e76636df3a1bc023cd2906d458916c1af4c1d7912c5b971fc642",
-          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/l/lsb/lsb-base_11.6_all.deb",
-          "version": "11.6"
-        },
-        {
           "name": "mailcap",
           "sha256": "d6c1e3c60a4b6feb107bd2d4134ea01694e9e8c9fd513639d58b649705a18fcf",
           "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/m/mailcap/mailcap_3.70+nmu1_all.deb",
@@ -1005,12 +993,6 @@
           "version": "4.1.0-0.2"
         },
         {
-          "name": "sysvinit_utils",
-          "sha256": "11790842108768ec52432ea22e7b4f057232813b7c27ef6dfe1aba776a5cb90e",
-          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/s/sysvinit/sysvinit-utils_3.06-4_amd64.deb",
-          "version": "3.06-4"
-        },
-        {
           "name": "tar",
           "sha256": "24fb92e98c2969171f81a8b589263d705f6b1670f95d121cd74c810d4605acc3",
           "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/t/tar/tar_1.34+dfsg-1.2+deb12u1_amd64.deb",
@@ -1039,24 +1021,6 @@
           "sha256": "b097a68c68e5c47a18e82678729dd9986782cf1d439f53beafad6f6dd3e6d688",
           "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/u/util-linux/util-linux-extra_2.38.1-5+deb12u3_amd64.deb",
           "version": "2.38.1-5+deb12u3"
-        },
-        {
-          "name": "x11_common",
-          "sha256": "fc97c2f4495eb33a77501c7960928c0d2001e5c4b2aa438f1713e2082c23bacd",
-          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/x/xorg/x11-common_7.7+23_all.deb",
-          "version": "1:7.7+23"
-        },
-        {
-          "name": "xfonts_encodings",
-          "sha256": "56143f317d241b6dee0275aa1066df936a776810d3bb83fe58563965d9bbe3d3",
-          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/x/xfonts-encodings/xfonts-encodings_1.0.4-2.2_all.deb",
-          "version": "1:1.0.4-2.2"
-        },
-        {
-          "name": "xfonts_utils",
-          "sha256": "20b290277caff5bae41298c4e171fb81c29560294f60f5eeb47ef50863efc0d7",
-          "url": "https://snapshot.debian.org/archive/debian/20260421T143351Z/pool/main/x/xfonts-utils/xfonts-utils_7.7+6_amd64.deb",
-          "version": "1:7.7+6"
         },
         {
           "name": "zip",
@@ -1290,7 +1254,7 @@
             "ca_certificates_java",
             "debconf_2_0",
             "fontconfig_config",
-            "fonts_urw_base35",
+            "fonts_liberation2",
             "gcc_12_base",
             "java_common",
             "libasound2",
@@ -1312,7 +1276,6 @@
             "libexpat1",
             "libffi8",
             "libfontconfig1",
-            "libfontenc1",
             "libfreetype6",
             "libgcc_s1",
             "libgcrypt20",
@@ -1354,15 +1317,10 @@
             "libunistring2",
             "libuuid1",
             "libzstd1",
-            "lsb_base",
             "openjdk_17_jre_headless",
             "openssl",
-            "sysvinit_utils",
             "util_linux",
             "util_linux_extra",
-            "x11_common",
-            "xfonts_encodings",
-            "xfonts_utils",
             "zlib1g"
           ],
           "name": "openjdk_17_jdk_headless"
