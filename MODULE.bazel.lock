@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 6,
-  "moduleFileHash": "8c051ca09db66e25b00d75b96b026870aaa6db2f9916a86d6211da72c4a5d447",
+  "moduleFileHash": "29a62f6390ac2c18665644afb4fa042265e5ceda1e36d2c798638a1220d0c32a",
   "flags": {
     "cmdRegistries": [
       "https://raw.githubusercontent.com/world-federation-of-advertisers/bazel-registry/main",
@@ -37,7 +37,8 @@
           "imports": {
             "bazelisk": "bazelisk",
             "kubectl": "kubectl",
-            "google_cloud_cli": "google_cloud_cli"
+            "google_cloud_cli": "google_cloud_cli",
+            "temurin_17_jdk": "temurin_17_jdk"
           },
           "devImports": [],
           "tags": [
@@ -93,6 +94,23 @@
                 "line": 49,
                 "column": 13
               }
+            },
+            {
+              "tagName": "@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+              "attributeValues": {
+                "build_file_content": "genrule(\n    name = \"decompress_data\",\n    srcs = [\"data.tar.xz\"],\n    outs = [\"layer.tar\"],\n    cmd = \"xz --decompress --stdout $< >$@\",\n)\n\nalias(\n    name = \"layer\",\n    actual = \":layer.tar\",\n    visibility = [\"//visibility:public\"],\n)\n",
+                "sha256": "ce5e529f453ae11e41ddb3ae25979df491634fd4d3f4ed5fed44db1d13ca502f",
+                "urls": [
+                  "https://packages.adoptium.net/artifactory/deb/pool/main/t/temurin-17/temurin-17-jdk_17.0.18.0.0+8-1_amd64.deb"
+                ],
+                "name": "temurin_17_jdk"
+              },
+              "devDependency": false,
+              "location": {
+                "file": "@@//:MODULE.bazel",
+                "line": 59,
+                "column": 13
+              }
             }
           ],
           "hasDevUseExtension": false,
@@ -104,25 +122,25 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 58,
+            "line": 68,
             "column": 20
           },
           "imports": {
-            "debian_bookworm_slim": "debian_bookworm_slim"
+            "debian_trixie_slim": "debian_trixie_slim"
           },
           "devImports": [],
           "tags": [
             {
               "tagName": "pull",
               "attributeValues": {
-                "name": "debian_bookworm_slim",
-                "digest": "sha256:55693b5c400737391c2653f1d6e38d52bbe86158e4f41fe14c24e106b56fc1d7",
+                "name": "debian_trixie_slim",
+                "digest": "sha256:5fb70129351edec3723d13f427400ecae3f13b83750e23ad47c46721effcf2db",
                 "image": "docker.io/library/debian"
               },
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 59,
+                "line": 69,
                 "column": 9
               }
             }
@@ -3549,6 +3567,17 @@
         "recordedDirentsInputs": {},
         "envVariables": {},
         "generatedRepoSpecs": {
+          "debian_trixie_slim_single": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/debian",
+              "identifier": "sha256:5fb70129351edec3723d13f427400ecae3f13b83750e23ad47c46721effcf2db",
+              "target_name": "debian_trixie_slim_single"
+            }
+          },
           "oci_crane_registry_toolchains": {
             "bzlFile": "@@rules_oci~//oci/private:toolchains_repo.bzl",
             "ruleClassName": "toolchains_repo",
@@ -3661,21 +3690,6 @@
               "platform": "darwin_arm64"
             }
           },
-          "debian_bookworm_slim": {
-            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
-            "ruleClassName": "oci_alias",
-            "attributes": {
-              "target_name": "debian_bookworm_slim",
-              "scheme": "https",
-              "registry": "index.docker.io",
-              "repository": "library/debian",
-              "identifier": "sha256:55693b5c400737391c2653f1d6e38d52bbe86158e4f41fe14c24e106b56fc1d7",
-              "platforms": {},
-              "platform": "@@rules_oci~//oci:debian_bookworm_slim_single",
-              "bzlmod_repository": "debian_bookworm_slim",
-              "reproducible": true
-            }
-          },
           "oci_crane_linux_amd64": {
             "bzlFile": "@@rules_oci~//oci:repositories.bzl",
             "ruleClassName": "crane_repositories",
@@ -3760,6 +3774,21 @@
               "version": "1.7"
             }
           },
+          "debian_trixie_slim": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_alias",
+            "attributes": {
+              "target_name": "debian_trixie_slim",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/debian",
+              "identifier": "sha256:5fb70129351edec3723d13f427400ecae3f13b83750e23ad47c46721effcf2db",
+              "platforms": {},
+              "platform": "@@rules_oci~//oci:debian_trixie_slim_single",
+              "bzlmod_repository": "debian_trixie_slim",
+              "reproducible": true
+            }
+          },
           "yq_windows_amd64": {
             "bzlFile": "@@aspect_bazel_lib~//lib/private:yq_toolchain.bzl",
             "ruleClassName": "yq_platform_repo",
@@ -3797,17 +3826,6 @@
             "ruleClassName": "copy_to_directory_platform_repo",
             "attributes": {
               "platform": "darwin_amd64"
-            }
-          },
-          "debian_bookworm_slim_single": {
-            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
-            "ruleClassName": "oci_pull",
-            "attributes": {
-              "scheme": "https",
-              "registry": "index.docker.io",
-              "repository": "library/debian",
-              "identifier": "sha256:55693b5c400737391c2653f1d6e38d52bbe86158e4f41fe14c24e106b56fc1d7",
-              "target_name": "debian_bookworm_slim_single"
             }
           },
           "yq_linux_ppc64le": {
