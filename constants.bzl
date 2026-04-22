@@ -14,7 +14,7 @@
 
 """Shared constants for container build targets."""
 
-_DEBIAN_JAVA_17_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"
+_DEBIAN_JAVA_17_HOME = "/usr/lib/jvm/temurin-17-jdk-amd64"
 _DEBIAN_JAVA_17_BIN = _DEBIAN_JAVA_17_HOME + "/bin"
 
 DEBIAN_JAVA_17 = struct(
