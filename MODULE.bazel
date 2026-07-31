@@ -1,12 +1,12 @@
 module(name = "wfa-containers")
 
 # Bazel Central Registry deps.
-bazel_dep(name = "rules_oci", version = "1.7.4")
-bazel_dep(name = "rules_pkg", version = "0.10.1")
-bazel_dep(name = "rules_distroless", version = "0.5.1")
+bazel_dep(name = "rules_oci", version = "2.3.0")
+bazel_dep(name = "rules_pkg", version = "1.2.0")
+bazel_dep(name = "rules_distroless", version = "0.8.0")
 
 # WFA registry deps.
-bazel_dep(name = "rules_cue", version = "0.4.0", repo_name = "wfa_rules_cue")
+bazel_dep(name = "rules_cue", version = "0.4.1", repo_name = "wfa_rules_cue")
 
 http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 
@@ -72,3 +72,17 @@ oci.pull(
     image = "docker.io/library/debian",
 )
 use_repo(oci, "debian_trixie_slim")
+
+apt = use_extension(
+    "@rules_distroless//apt:extensions.bzl",
+    "apt",
+)
+
+apt.install(
+    name = "debian_packages",
+    manifest = "//:packages.yaml",
+    lock = "//:packages.lock.json",
+    mergedusr = True,
+)
+
+use_repo(apt, "debian_packages")

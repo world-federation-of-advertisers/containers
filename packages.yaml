@@ -12,19 +12,35 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- distros: ["debian13"]
-  archs: ["amd64"]
-  packages:
-    - base-files
-    - netbase
-    - ca-certificates
-    - tzdata
-    - zip
-    - unzip
-    - git
-    - python3
-    - python-is-python3
-    - clang
-    - swig
-    - libclang-rt-dev
-    - llvm
+# NOTE: For any changes to take effect, you must also run `bazel run @debian//:lock`.
+
+version: 1
+
+sources:
+  - channel: trixie main
+    urls:
+      - https://snapshot-cloudflare.debian.org/archive/debian/20260429T150338Z
+      - https://snapshot.debian.org/archive/debian/20260429T150338Z
+
+  - channel: trixie-security main
+    urls:
+      - https://snapshot-cloudflare.debian.org/archive/debian-security/20260429T185341Z
+      - https://snapshot.debian.org/archive/debian-security/20260429T185341Z
+
+archs:
+  - amd64
+
+packages:
+  - base-files
+  - netbase
+  - ca-certificates
+  - tzdata
+  - zip
+  - unzip
+  - git
+  - python3
+  - python-is-python3
+  - clang
+  - swig
+  - libclang-rt-dev
+  - llvm

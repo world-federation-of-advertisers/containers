@@ -1,8 +1,7 @@
 # Bazel build environment image.
 
-load("@debian_packages//:packages.bzl", "debfile_layer", "debian_package_layer")
 load("@rules_distroless//distroless:defs.bzl", "cacerts")
-load("@rules_oci//oci:defs.bzl", "oci_image", "oci_push_rule", "oci_tarball")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load", "oci_push_rule")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 load("//:constants.bzl", "DEBIAN_JAVA_17")
 
@@ -10,28 +9,7 @@ JAVA = DEBIAN_JAVA_17
 
 cacerts(
     name = "ca_certs",
-    package = debfile_layer("ca-certificates"),
-)
-
-DEBIAN_PACKAGES = [
-    "base-files",
-    "netbase",
-    "ca-certificates",
-    "tzdata",
-    "zip",
-    "unzip",
-    "git",
-    "python3",
-    "python-is-python3",
-    "clang",
-    "swig",
-    "libclang-rt-dev",
-    "llvm",
-]
-
-pkg_tar(
-    name = "debian_packages",
-    deps = [debian_package_layer(package) for package in DEBIAN_PACKAGES],
+    package = "@debian_packages//ca-certificates:data",
 )
 
 pkg_tar(
@@ -59,7 +37,7 @@ oci_image(
     base = "@debian_trixie_slim",
     env = JAVA.env,
     tars = [
-        ":debian_packages",
+        "@debian_packages//:flat",
         ":ca_certs",
         ":executables",
         "@temurin_17_jdk//:layer",
@@ -89,7 +67,7 @@ oci_push_rule(
     tags = ["manual"],
 )
 
-oci_tarball(
+oci_load(
     name = "docker_load_bazel_image",
     format = "docker",
     image = ":bazel_image",
