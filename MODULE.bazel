@@ -1,12 +1,12 @@
 module(name = "wfa-containers")
 
 # Bazel Central Registry deps.
-bazel_dep(name = "rules_oci", version = "1.7.4")
-bazel_dep(name = "rules_pkg", version = "0.10.1")
-bazel_dep(name = "rules_distroless", version = "0.5.1")
+bazel_dep(name = "rules_oci", version = "2.3.0")
+bazel_dep(name = "rules_pkg", version = "1.2.0")
+bazel_dep(name = "rules_distroless", version = "0.8.0")
 
 # WFA registry deps.
-bazel_dep(name = "rules_cue", version = "0.4.0", repo_name = "wfa_rules_cue")
+bazel_dep(name = "rules_cue", version = "0.4.1", repo_name = "wfa_rules_cue")
 
 http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 
@@ -55,20 +55,34 @@ http_archive(
     ],
 )
 
-# jdk, mirroring what distroless uses for debian13 https://github.com/GoogleContainerTools/distroless/blob/8a165b855b6d14366edb293e74ade0d7bace2f57/private/repos/deb/trixie_adoptium.lock.json#L18
+# jdk, mirroring what distroless uses for debian13 https://github.com/GoogleContainerTools/distroless/blob/9ce03eb7fc0c5b92c42f88cea69af69fb08585ce/private/repos/deb/trixie_adoptium.lock.json#L18
 http_archive(
     name = "temurin_17_jdk",
     build_file_content = _XZ_DEB_BUILD,
-    sha256 = "ce5e529f453ae11e41ddb3ae25979df491634fd4d3f4ed5fed44db1d13ca502f",
+    sha256 = "b4aeb5e98e7504f7b12206294d64e45590cdae7f9f4703f9df13db34e4fd5173",
     urls = [
-        "https://packages.adoptium.net/artifactory/deb/pool/main/t/temurin-17/temurin-17-jdk_17.0.18.0.0+8-1_amd64.deb",
+        "https://packages.adoptium.net/artifactory/deb/pool/main/t/temurin-17/temurin-17-jdk_17.0.20.0.0+8-0_amd64.deb",
     ],
 )
 
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 oci.pull(
     name = "debian_trixie_slim",
-    digest = "sha256:5fb70129351edec3723d13f427400ecae3f13b83750e23ad47c46721effcf2db",
+    digest = "sha256:38a76d01668772e381ad2826d876627c89e7133e2f8a0f5d567306798b0f2a16",
     image = "docker.io/library/debian",
 )
 use_repo(oci, "debian_trixie_slim")
+
+apt = use_extension(
+    "@rules_distroless//apt:extensions.bzl",
+    "apt",
+)
+
+apt.install(
+    name = "debian_packages",
+    manifest = "//:packages.yaml",
+    lock = "//:packages.lock.json",
+    mergedusr = True,
+)
+
+use_repo(apt, "debian_packages")
